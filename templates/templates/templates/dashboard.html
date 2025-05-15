@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Área do Usuário - Roleta Brasileira</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo, {{ username }}!</h1>
+        <p>Moedas: {{ coins }}</p>
+
+        <h2>Previsões da Roleta (IA)</h2>
+        <div id="ia-results">
+            <p>(aqui futuramente aparecerão os 5 números mais prováveis)</p>
+        </div>
+
+        <h2>Simular Aposta</h2>
+        <form id="bet-form">
+            <input type="text" placeholder="Números (ex: 7, 15, 22)" required>
+            <input type="number" placeholder="Valor da aposta" required>
+            <button type="submit">Simular</button>
+        </form>
+
+        <h2>Assistir Roleta ao Vivo</h2>
+        <iframe src="https://lxgo.me/go?brand=lotusbet&bta=30173_0253"
+                width="100%" height="400px" allowfullscreen></iframe>
+
+        <br><br>
+        <a href="/logout">Sair</a>
+    </div>
+</body>
+</html>
