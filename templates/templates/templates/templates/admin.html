@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel do Administrador</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Painel do Administrador</h1>
+
+        <h2>Usuários Cadastrados</h2>
+        <ul>
+            {% for user in users %}
+                <li>
+                    {{ user['username'] }} - Senha: {{ user['password'] }} - Moedas: {{ user['coins'] }}
+                    <form method="POST" action="/delete_user" style="display:inline;">
+                        <input type="hidden" name="username" value="{{ user['username'] }}">
+                        <button type="submit">Excluir</button>
+                    </form>
+                    <form method="POST" action="/update_coins" style="display:inline;">
+                        <input type="hidden" name="username" value="{{ user['username'] }}">
+                        <input type="number" name="coins" value="{{ user['coins'] }}" min="0" style="width:60px;">
+                        <button type="submit">Atualizar moedas</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Links de Vídeos</h2>
+        <ul>
+            {% for link in links %}
+                <li>
+                    {{ link['url'] }} - Adicionado por: {{ link['user'] }}
+                    <form method="POST" action="/delete_link" style="display:inline;">
+                        <input type="hidden" name="url" value="{{ link['url'] }}">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Adicionar Link Grátis</h2>
+        <form method="POST" action="/add_free_link">
+            <input type="text" name="url" placeholder="Cole o link aqui" required>
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <br><br>
+        <a href="/logout">Sair</a>
+    </div>
+</body>
+</html>
